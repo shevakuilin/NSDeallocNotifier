@@ -1,6 +1,6 @@
 #### 一个 NSMapTable strong-weak释放的可行性验证方案
 
-NSMapTable 的 weak 自动释放并不像 Apple 描述的那么可靠([弱引用归零存在问题](http://cocoamine.net/blog/2013/12/13/nsmaptable-and-zeroing-weak-references/)，并不符合官方描述的预期，无论是weak-strong还是strong-weak亦或是其他类型)，所以参考了一些方案，实现了一个可以令其稳定释放的方案
+NSMapTable 的 weak 自动释放并不像 Apple 描述的那么可靠([弱引用归零存在问题](http://cocoamine.net/blog/2013/12/13/nsmaptable-and-zeroing-weak-references/)，并不符合官方描述的预期，无论是weak-strong还是strong-weak亦或是其他类型)，所以参考了一些思路，实现了一个可以令其稳定释放的方案
 
 <b>核心思路：</b>
 - 创建一个自定义类 NSDeallocNotifier，该类在实例化构造时接收一个 block 作为参数，并在该类析构 (deinit/dealloc) 时执行该 block.
